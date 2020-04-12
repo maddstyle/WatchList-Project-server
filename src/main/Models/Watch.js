@@ -10,12 +10,12 @@ const watchSchema = new Schema({
     type: String,
     required: true
   },
+  price: {
+    type: Number,
+  },
   material: {
     type: String,
     required: true
-  },
-  year: {
-    type: Number
   },
   description: {
     type: String
