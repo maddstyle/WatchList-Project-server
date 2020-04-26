@@ -11,7 +11,11 @@ class App {
     this.routes();
   }
   middlewares() {
-    this.server.use(cors());
+    this.server.use(cors({
+      credentials: true,
+      origin: true,
+      // origin: ["http://localhost:3000", "https://herokuAppDomainURL"]
+  }));
     this.server.use(express.json());
     this.server.use(
       bodyParser.urlencoded({

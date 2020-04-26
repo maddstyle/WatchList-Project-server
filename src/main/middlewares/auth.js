@@ -6,7 +6,7 @@ module.exports = async (req, res, next) => {
   if (!authHeader) return res.json({ error: 'token not provided' })
 
   const [, token] = authHeader.split(' ')
-  const decoded = await promisify(jwt.verify)(token, 'bobcat')
+  // const decoded = await promisify(jwt.verify)(token, 'bobcat')
   try {
     const decoded = await promisify(jwt.verify)(token, 'bobcat')
     req.userId = decoded.id
