@@ -1,5 +1,6 @@
 const express = require('express')
 const routes = express.Router()
+const NotificationController = require('../main/controllers/notificationController')
 const SessionController = require('../main/controllers/sessionController')
 const UserController = require('../main/controllers/userController')
 const WatchController = require('../main/controllers/watchController')
@@ -16,6 +17,7 @@ routes.post('/createWatch', WatchController.store)
 routes.get('/findWatch', WatchController.index)
 routes.put('/watch/:id', WatchController.update)
 routes.delete('/watch/:id', WatchController.delete)
+routes.post('/createNotification', NotificationController.store)
 
 // ANY ROUTE BELOW HERE WILL REQUIRE AUTHENTICATION
 routes.use(authMiddleware)

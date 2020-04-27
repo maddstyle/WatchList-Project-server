@@ -1,24 +1,24 @@
 const mongoose = require("mongoose");
-​
-const NotificationSchema = new mongoose.Schema(
-  {
-    content: {
-      type: String,
-      required: true
-    },
-    user: {
-      type: Number,
-      required: true
-    },
-    read: {
-      type: Boolean,
-      required: true,
-      default: false
-    }
+const Schema = mongoose.Schema;
+
+const NotificationSchema = new Schema({
+  content: {
+    type: String,
+    required: true
   },
-  {
-    timestamps: true
+  user: {
+    type: String
+  },
+  read: {
+    type: Boolean,
+    default: false
   }
-);
-​
-export default mongoose.model("Notification", NotificationSchema);
+});
+
+// { type: Schema.Types.ObjectId, ref: "Event" }
+/**
+ * @create get notifications
+ * @select .select to get the user from the notification
+ */
+
+module.exports = mongoose.model("Notification", NotificationSchema);
