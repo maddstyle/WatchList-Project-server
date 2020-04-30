@@ -11,7 +11,7 @@ const watchSchema = new Schema({
     required: true
   },
   price: {
-    type: Number,
+    type: Number
   },
   material: {
     type: String,
@@ -24,8 +24,9 @@ const watchSchema = new Schema({
   description: {
     type: String
   },
-  pictureUrl: {
-    type: String
+  image: {
+    type: Schema.Types.ObjectId,
+    ref: "File"
   }
 });
 
