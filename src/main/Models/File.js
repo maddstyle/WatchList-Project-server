@@ -2,9 +2,8 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const FileSchema = new Schema({
-  path: {
-    type: String
-  },
+  namne: String,
+  imageUrl: String
 });
 
 module.exports = mongoose.model("File", FileSchema);

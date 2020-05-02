@@ -1,6 +1,7 @@
 const express = require("express");
 const routes = express.Router();
-const multer = require("multer");
+
+// const uploadCloud = require("../../config/cloudinary-setup");
 const uploadCloud = require("../../config/cloudinary-setup");
 const NotificationController = require("../main/controllers/notificationController");
 const SessionController = require("../main/controllers/sessionController");
@@ -10,7 +11,6 @@ const SeedController = require("../main/controllers/seedController");
 const authMiddleware = require("../main/middlewares/auth");
 const FileController = require("../main/controllers/FileController");
 
-const upload = multer(uploadCloud);
 // crud operations will be done here
 // GET, POST, UPDATE, DELETE
 
@@ -23,7 +23,7 @@ routes.put("/watch/:id", WatchController.update);
 routes.delete("/watch/:id", WatchController.delete);
 routes.post("/createNotification", NotificationController.store);
 
-routes.post("/files", upload.single("path"), FileController.store);
+routes.post("/files", uploadCloud.single("imageUrl"), FileController.store);
 
 // ANY ROUTE BELOW HERE WILL REQUIRE AUTHENTICATION
 
