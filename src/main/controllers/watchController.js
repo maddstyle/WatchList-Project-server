@@ -17,7 +17,7 @@ class WatchController {
   // STORE BY DEFAULT IS TO CREATE AN ITEM, IN THIS CASE A WATCH
   async store(req, res) {
     try {
-      const { brand, model, price, material, description, picture } = req.body;
+      const { brand, model, price, material, description, image } = req.body;
       console.log(req.body);
       const watch = await Watch.create({
         brand,
@@ -25,8 +25,9 @@ class WatchController {
         price,
         material,
         description,
-        picture
+        image
       });
+
       return res.json(watch);
     } catch (err) {
       return res.json(err);

@@ -1,5 +1,6 @@
 const express = require("express");
 const routes = express.Router();
+const File = require("../main/Models/File");
 
 // const uploadCloud = require("../../config/cloudinary-setup");
 const uploadCloud = require("../../config/cloudinary-setup");
@@ -9,7 +10,6 @@ const UserController = require("../main/controllers/userController");
 const WatchController = require("../main/controllers/watchController");
 const SeedController = require("../main/controllers/seedController");
 const authMiddleware = require("../main/middlewares/auth");
-const FileController = require("../main/controllers/FileController");
 
 // crud operations will be done here
 // GET, POST, UPDATE, DELETE
@@ -23,7 +23,20 @@ routes.put("/watch/:id", WatchController.update);
 routes.delete("/watch/:id", WatchController.delete);
 routes.post("/createNotification", NotificationController.store);
 
-routes.post("/files", uploadCloud.single("imageUrl"), FileController.store);
+routes.post(
+  "/files",
+  uploadCloud.single("imageUrl"),
+  async (req, res, next) => {
+    if (req.file) {
+      const { secure_url } = req.file;
+      const file = await File.create({
+        name: "file",
+        imageUrl: secure_url
+      });
+      return res.json(file);
+    }
+  }
+);
 
 // ANY ROUTE BELOW HERE WILL REQUIRE AUTHENTICATION
 

@@ -14,20 +14,15 @@ const watchSchema = new Schema({
     type: Number
   },
   material: {
-    type: String,
-    required: true
+    type: String
   },
   category: {
-    type: String,
-    required: true
+    type: String
   },
   description: {
     type: String
   },
-  image: {
-    type: Schema.Types.ObjectId,
-    ref: "File"
-  }
+  image: String
 });
 
 module.exports = mongoose.model("Watch", watchSchema);
